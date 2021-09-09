@@ -126,5 +126,5 @@ plugins: hexo-generate-feed
 ## Docs: https://hexo.io/docs/one-command-deployment
 deploy:
   type: git
-  repo: https://github.com/Jinkun123/Jinkun123.github.io.git
+  repo: git@github.com:Jinkun123/Jinkun123.github.io.git
   branch: master
