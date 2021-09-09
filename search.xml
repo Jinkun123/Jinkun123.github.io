@@ -4,6 +4,58 @@
   
     
     <entry>
+      <title>Node 版本管理  nvm nrm</title>
+      <link href="2021/09/09/nrm-mvm/"/>
+      <url>2021/09/09/nrm-mvm/</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>作为一个小前端，是否因为搭建环境烦恼过，是否因为 npm 等国外镜像踩坑过，不要怕，接下来跟着我一步步搭建适合自己的开发环境吧！！！</p><h2 id="node"><a href="#node" class="headerlink" title="node"></a>node</h2><p>这个不用说了吧，我们经常和他打交道，无论是 gulp、webpack和parcel等打包工具，还是各种脚手架的工具，都离不开node环境的支持，接下来我就介绍一下我常用的一些工具和模块。</p><h2 id="nvm"><a href="#nvm" class="headerlink" title="nvm"></a>nvm</h2><p>管理node版本，通过nvm我们可以同时安装/切换不同的node版本不过,nvm不支持window版本,但是有替代方案,就是nvm-window,具体为什么nvm为何不支持windows平台?这里就不做谈论了…</p><blockquote><p> ps: nvm-window 下载链接，如果网速快就不需要在这里下载了，github 下载链接，建议下载nvm-setup.zip会帮你配置好环境变量</p></blockquote><h4 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h4><p>如果没什么特别要求，无脑下一步即可</p><ol><li>如果之前已安装node,作者的建议是卸载原有的node版本,避免发生冲突</li><li>配置 setting.txt 文件,主要是配置为国内镜像源镜像源<br>配置文件在：C:\Users\用户名\AppData\Roaming\nvm 下（如果和我一下，无脑下一步的话）</li></ol><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">node_mirror: https:&#x2F;&#x2F;npm.taobao.org&#x2F;mirrors&#x2F;node&#x2F;</span><br><span class="line">npm_mirror: https:&#x2F;&#x2F;npm.taobao.org&#x2F;mirrors&#x2F;npm&#x2F;</span><br></pre></td></tr></table></figure><blockquote><p>ps:如果遇到Powershell下禁止执行脚本的问题,请用管理员打开Powershell执行set-ExecutionPolicy RemoteSigned，选择 y 即可</p></blockquote><p>常用命令</p><ol><li><p>可列出已安装的 node 版本 nvm list/nvm ls</p><pre><code> nvm ls</code></pre></li><li><p>安装指定版本的 node nvm install[arch]</p><pre><code> nvm install latest # latest表示安装最新版</code></pre></li></ol><blockquote><p>ps: arch 为可选的平台架构项（32 位/64 位），，默认为系统平台对应的版本，若设置为 all，则同时安装两个版本。</p></blockquote><ol start="3"><li><p>卸载指定版本 nvm uninstall</p><pre><code> nvm uninstall 13.6.0 # latest表示安装最新版</code></pre></li><li><p>设置镜像源 nvm node_mirror</p><ul><li><p>设置node镜像源</p><pre><code> nvm node_mirror https://npm.taobao.org/mirrors/node/ </code></pre></li><li><p>设置npm镜像源</p><pre><code> nvm npm_mirror https://npm.taobao.org/mirrors/node/</code></pre></li></ul></li></ol><h2 id="nrm"><a href="#nrm" class="headerlink" title="nrm"></a>nrm</h2><p>众所周知的一点，npm 日常会挂掉，还时不时丢包，所以我们需要一款切换源的工具，来帮我们解决这个问题。</p><blockquote><p>ps: 虽然可以手动切换源，但是相对来讲还是比较麻烦的，所以推荐使用工具来帮我们完成这件事</p></blockquote><h4 id="安裝"><a href="#安裝" class="headerlink" title="安裝"></a>安裝</h4><p><code>npm install -g nrm</code></p><h4 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h4><ol><li>列出当前支持切换的源<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">nrm ls* npm -------- https:&#x2F;&#x2F;registry.npmjs.org&#x2F;</span><br><span class="line">yarn ------- https:&#x2F;&#x2F;registry.yarnpkg.com&#x2F;</span><br><span class="line">cnpm ------- http:&#x2F;&#x2F;r.cnpmjs.org&#x2F;</span><br><span class="line">taobao ----- https:&#x2F;&#x2F;registry.npm.taobao.org&#x2F;</span><br><span class="line">nj --------- https:&#x2F;&#x2F;registry.nodejitsu.com&#x2F;</span><br><span class="line">npmMirror -- https:&#x2F;&#x2F;skimdb.npmjs.com&#x2F;registry&#x2F;</span><br><span class="line">edunpm ----- http:&#x2F;&#x2F;registry.enpmjs.org&#x2F;</span><br><span class="line"></span><br></pre></td></tr></table></figure></li><li>使用 taobao 源作为默认的 npm 源<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nrm use taobao    Registry has been set to: https:&#x2F;&#x2F;registry.npm.taobao.org&#x2F;</span><br></pre></td></tr></table></figure></li><li>测试源速度<ul><li>测试一个源<br><code>nrm test npm</code></li><li>测试所有源<br><code>nrm test</code></li></ul></li><li>访问源的主页<br><code>nrm home taobao</code></li></ol><blockquote><p>ps: 此命令会在默认浏览器中打开淘宝源的主页：<a href="https://registry.npm.taobao.org/">https://registry.npm.taobao.org/</a></p></blockquote><ol start="5"><li>添加/刪除 一个源</li></ol><ul><li><p>添加源：nrm add[home]，home 参数主要用于访问源的主页（可选）<br><code>nrm add gating http://npm.gatings.com/  http://gatings.cn/</code></p></li><li><p>刪除源：nrm del<br><code>nrm del gating</code></p></li></ul><blockquote><p>ps: nrm del 命令不能删除 nrm 自己内置的源。</p></blockquote>]]></content>
+      
+      
+      <categories>
+          
+          <category> Node </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> nvm </tag>
+            
+            <tag> nrm </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>IDEA试用</title>
+      <link href="2021/09/09/Eval/"/>
+      <url>2021/09/09/Eval/</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h1 id="Eval-Reset试用"><a href="#Eval-Reset试用" class="headerlink" title="Eval Reset试用"></a>Eval Reset试用</h1><p>1、下载插件下载地址：<a href="https://plugins.zhile.io/files/ide-eval-resetter-2.1.6.zip">https://plugins.zhile.io/files/ide-eval-resetter-2.1.6.zip</a></p><p>2、安装插件直接下载插件 zip 包（macOS 可能会自动解压，然后把 zip 包丢进回收站）通常可以直接把 zip 包拖进 IDE 的窗口来进行插件的安装。如果无法拖动安装，你可以在Settings/Preferences… -&gt; Plugins 里手动安装插件（Install Plugin From Disk…）插件会提示安装成功</p><p>3、使用插件成功安装插件后，在 帮助 下会多一个 Eval Reset 按钮，如下图所示：</p><p><img src="https://laowangblog.com/wp-content/uploads/2020/11/jetbrains-%E8%AF%95%E7%94%A8.png"></p><p>一般来说，在 IDE 窗口切出去或切回来时（窗口失去/得到焦点）会触发事件，检测是否长时间（25 天）没有重置，给通知让你选择。（初次安装因为无法获取上次重置时间，会直接给予提示）也可以手动唤出插件的主界面：</p><ul><li><pre><code> 如果 IDE 没有打开项目，在Welcome界面点击菜单：Get Help -&gt; Eval Reset</code></pre></li><li><pre><code> 如果 IDE 打开了项目，点击菜单：Help -&gt; Eval Reset</code></pre></li></ul><p>唤出的插件主界面中包含了一些显示信息，2 个按钮，1 个勾选项：</p><ul><li>按钮：Reload 用来刷新界面上的显示信息。</li><li>按钮：Reset 点击会询问是否重置试用信息并重启 IDE。选择 Yes 则执行重置操作并重启 IDE 生效，选择 No 则什么也不做。（此为手动重置方式）</li><li>勾选项：Auto reset before per restart 如果勾选了，则自勾选后每次重启/退出 IDE 时会自动重置试用信息，你无需做额外的事情。（此为自动重置方式）</li></ul>]]></content>
+      
+      
+      <categories>
+          
+          <category> Eval Reset </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> IDEA </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>sourcetree</title>
       <link href="2021/05/04/sourcetree/"/>
       <url>2021/05/04/sourcetree/</url>
