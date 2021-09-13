@@ -33,7 +33,6 @@ jobs:
       - name: Generate static blog file
         run: |
           hexo clean
-          hexo generate
       - name: Deploy to github page
         run: |
           hexo deploy
