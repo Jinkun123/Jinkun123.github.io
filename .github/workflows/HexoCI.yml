@@ -27,12 +27,10 @@ jobs:
           git config --global user.email "j18790101207@163.com"
       - name: Install dependencies
         run: |
-          npm i -g hexo-cli
-          npm install hexo-deployer-git --save
-          npm i
-      - name: Generate static blog file
-        run: |
-          hexo clean
+          npm install hexo-cli -g
+          npm install
       - name: Deploy to github page
         run: |
-          hexo deploy
+           hexo clean
+           hexo generate 
+           hexo deploy
